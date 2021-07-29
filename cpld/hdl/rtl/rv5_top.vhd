@@ -1,7 +1,11 @@
 library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 
-entity rv5_top is port (
+entity rv5_top is 
+generic (
+	R2R_SIZE : natural := 5
+);
+port (
 	-- clocks
 	clk_m       : in  STD_LOGIC; -- master clock
 	-- enable i/f
@@ -11,7 +15,7 @@ entity rv5_top is port (
 --	ena_out     : out STD_LOGIC; -- fx enable to pedal
 	-- mode i/f
 	mode_pb     : in  STD_LOGIC_VECTOR (5 downto 0); -- mode pushbutton detected
-	mode_r2r    : out STD_LOGIC_VECTOR (3 downto 0); -- r2r output bias
+	mode_r2r    : out STD_LOGIC_VECTOR (R2R_SIZE-1 downto 0); -- r2r output bias
 	mode_led_segment_data : out STD_LOGIC_VECTOR (6 downto 0);  -- mode LED pulldown
 	mode_led_active_digit : out STD_LOGIC_VECTOR (3 downto 0)  -- LED digit pullup
 ); end rv5_top;
@@ -35,14 +39,15 @@ begin
 	
 	INST_MODE_SEL : entity work.mode_select(rtl)
 	generic map (
-    g_num_seg => c_num_seg,
-    g_num_dig => c_num_dig
+    	g_r2r_size => R2R_SIZE,
+		g_num_seg => c_num_seg,
+    	g_num_dig => c_num_dig
 	)
 	port map (
 		clk          => clk_m,
 		mode_pb      => mode_pb, -- active low
 		mode_display => mode_display, -- active low
-		mode_vout	   => mode_r2r
+		mode_vout	 => mode_r2r
 	); 
 
 

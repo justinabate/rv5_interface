@@ -23,6 +23,9 @@
 ### 1,2,3,5,6,8,12,13,14,16
 ### 39,40,41,42,43,44
 
+NET "clk_m"         	             LOC = "P1"  | IOSTANDARD = LVCMOS33 | TNM_NET = clk_m;
+TIMESPEC TS_clk_m = PERIOD "clk_m" 25 MHz HIGH 50% INPUT_JITTER 18 ps;
+
 NET "mode_led_active_digit(3)"       LOC = "P40" | IOSTANDARD = LVCMOS33; # digit 4; dev kit LED D1
 NET "mode_led_active_digit(2)"       LOC = "P41" | IOSTANDARD = LVCMOS33; # digit 3
 NET "mode_led_active_digit(1)"       LOC = "P42" | IOSTANDARD = LVCMOS33; # digit 2
@@ -30,9 +33,6 @@ NET "mode_led_active_digit(0)"       LOC = "P43" | IOSTANDARD = LVCMOS33; # digi
 
 NET "mode_led_segment_data(0)"       LOC = "P44" | IOSTANDARD = LVCMOS33; # seg A
 NET "mode_led_segment_data(1)"       LOC = "P2" | IOSTANDARD = LVCMOS33; # seg B
-
-NET "clk_m"         	             LOC = "P1"  | IOSTANDARD = LVCMOS33 | TNM_NET = clk_m;
-TIMESPEC TS_clk_m = PERIOD "clk_m" 25 MHz HIGH 50% INPUT_JITTER 18 ps;
 
 NET "mode_led_segment_data(2)" 		 LOC = "P3"	  | IOSTANDARD = LVCMOS33; # seg C
 NET "mode_led_segment_data(3)" 		 LOC = "P5"	  | IOSTANDARD = LVCMOS33; # seg D
@@ -52,18 +52,14 @@ NET "mode_pb(2)" 		    LOC = "P20" 	| IOSTANDARD = LVCMOS33	|	PULLUP;  # input
 NET "mode_pb(3)" 		    LOC = "P21" 	| IOSTANDARD = LVCMOS33	|	PULLUP;  # input
 NET "mode_pb(4)" 		    LOC = "P22" 	| IOSTANDARD = LVCMOS33	|	PULLUP;  # input
 NET "mode_pb(5)" 		    LOC = "P23" 	| IOSTANDARD = LVCMOS33	|	PULLUP;  # input
-
-# LOC = "P27"		| IOSTANDARD = LVCMOS33;
-# LOC = "P28"		| IOSTANDARD = LVCMOS33;
-# LOC = "P29"		| IOSTANDARD = LVCMOS33;
-
-# NET "ena_sw"	            LOC = "P30"		| IOSTANDARD = LVCMOS33;  
-# NET "ena_cv"	            LOC = "P31"		| IOSTANDARD = LVCMOS33;  
-# NET "ena_cv_dv"             LOC = "P32"		| IOSTANDARD = LVCMOS33; 
-# NET "ena_out"               LOC = "P33"		| IOSTANDARD = LVCMOS33; 
-
-NET "mode_r2r(0)"		LOC = "P33" 	| IOSTANDARD = LVCMOS33;
-NET "mode_r2r(1)"		LOC = "P34" 	| IOSTANDARD = LVCMOS33;
-NET "mode_r2r(2)"		LOC = "P36" 	| IOSTANDARD = LVCMOS33;
-NET "mode_r2r(3)"		LOC = "P37" 	| IOSTANDARD = LVCMOS33; 
-# LOC = "P38" # dev kit LED D2
+#                           LOC = "P27"		| IOSTANDARD = LVCMOS33;
+#                           LOC = "P28"		| IOSTANDARD = LVCMOS33;
+#                           LOC = "P29"		| IOSTANDARD = LVCMOS33;
+#                           LOC = "P30"		| IOSTANDARD = LVCMOS33;  
+#                           LOC = "P31"		| IOSTANDARD = LVCMOS33;  
+NET "mode_r2r(0)"           LOC = "P32"		| IOSTANDARD = LVCMOS33; 
+NET "mode_r2r(1)"		    LOC = "P33" 	| IOSTANDARD = LVCMOS33;
+NET "mode_r2r(2)"		    LOC = "P34" 	| IOSTANDARD = LVCMOS33;
+NET "mode_r2r(3)"		    LOC = "P36" 	| IOSTANDARD = LVCMOS33;
+NET "mode_r2r(4)"		    LOC = "P37" 	| IOSTANDARD = LVCMOS33; 
+#                           LOC = "P38" # dev kit LED D2

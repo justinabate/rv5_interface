@@ -165,7 +165,6 @@ cpld: makeconfig.cfg $(VSOURCE) $(CONSTRAINTS) build/$(PROJECT).prj build/$(PROJ
 # input the VM6, output a JED (UG628 p.291)
 	$(call RUN,hprep6) -i cpldfit/$(PROJECT).vm6
 	@find build/ -maxdepth 1 -type f -print0 | xargs -0 mv -t build/hprep6/
-#	@echo "\e[1;32m======== OK ========\e[m\n"
 	@echo "\n\e[1;32m$(shell date +"%Y-%m-%d %T"): ======== DONE ========\e[m"
 	@echo "CPLD build output at ./build/hprep6/$(PROJECT).jed \n"
 
