@@ -28,6 +28,7 @@ architecture rtl of rv5_top is
 
 begin
 
+
 --	INST_FX_TOG : entity work.fx_toggle(rtl)
 --		port map (
 --			clk    => i_clk,
@@ -37,6 +38,7 @@ begin
 --			toggle => ena_out
 --	);
 	
+
 	INST_MODE_SEL : entity work.mode_select(rtl)
 	generic map (
     	g_r2r_size => R2R_SIZE,
@@ -49,30 +51,34 @@ begin
 		i_pushbttn  => i_pushbttn,
 		--! set 7-segement data vector based on the pushbutton
 		o_7seg_dat  => w_7seg_dat,  
-		--! active hi output to the PCD
+		--! active hi output to the PCB
 		o_r2r_vout	=> o_r2r_vout
 	); 	  
 	  
 
-
 	INST_7SEG_DRVR : entity work.sev_seg_drvr(rtl)
 	generic map (
-    g_clk_frq => 12000000, -- Hz
-    g_ref_frq => 720, -- Hz
-    g_num_seg => 7,
-    g_num_dig => 4
+		g_clk_frq => 12000000, -- Hz
+		g_ref_frq => 720, -- Hz
+		g_num_seg => 7,
+		g_num_dig => 4
 	)
 	port map (
-    i_clk			    => i_clk, -- : in  std_logic;
-    --! input segment data
-    i_dig_1 		  => w_7seg_dat( c_num_seg*(c_num_dig-0)-1 downto c_num_seg*(c_num_dig-1) ), -- : in (6:0); 7seg vector for left digit
-    i_dig_2 		  => w_7seg_dat( c_num_seg*(c_num_dig-1)-1 downto c_num_seg*(c_num_dig-2) ), -- : in (6:0); 7seg vector for ...
-    i_dig_3 		  => w_7seg_dat( c_num_seg*(c_num_dig-2)-1 downto c_num_seg*(c_num_dig-3) ), -- : in (6:0); 7seg vector for ...
-    i_dig_4 		  => w_7seg_dat( c_num_seg*(c_num_dig-3)-1 downto c_num_seg*(c_num_dig-4) ), -- : in (6:0); 7seg vector for right digit
-    --! digit select driver (pullup)
-    o_drive_dig		=> o_7seg_sel, -- : out std_logic_vector(g_num_digits-1 downto 0);
-    --! segment select driver (pulldown)
-    o_drive_seg 	=> o_7seg_dat -- : out std_logic_vector(6 downto 0);	
+		-- : in  std_logic;
+		i_clk			    => i_clk, 
+		--! input segment data
+		-- : in (6:0); 7seg vector for left digit
+		i_dig_1 		  => w_7seg_dat( c_num_seg*(c_num_dig-0)-1 downto c_num_seg*(c_num_dig-1) ), 
+		-- : in (6:0); 7seg vector for ...
+		i_dig_2 		  => w_7seg_dat( c_num_seg*(c_num_dig-1)-1 downto c_num_seg*(c_num_dig-2) ), 
+		-- : in (6:0); 7seg vector for ...
+		i_dig_3 		  => w_7seg_dat( c_num_seg*(c_num_dig-2)-1 downto c_num_seg*(c_num_dig-3) ), 
+		-- : in (6:0); 7seg vector for right digit
+		i_dig_4 		  => w_7seg_dat( c_num_seg*(c_num_dig-3)-1 downto c_num_seg*(c_num_dig-4) ), 
+		--! digit select driver (pullup)
+		o_digit_sel		=> o_7seg_sel, -- : out std_logic_vector(g_num_digits-1 downto 0);
+		--! segment select driver (pulldown)
+		o_sgmnt_dat 	=> o_7seg_dat -- : out std_logic_vector(6 downto 0);	
 	);
 
 end rtl;
